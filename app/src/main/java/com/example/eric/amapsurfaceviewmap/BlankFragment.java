@@ -2,6 +2,7 @@ package com.example.eric.amapsurfaceviewmap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.SupportMapFragment;
 
 public class BlankFragment extends Fragment implements AMap.OnMapLoadedListener {
+  private static final String TAG = "BlankFragment";
 
   private SupportMapFragment mapFragment;
   private AMap mMap;
@@ -35,7 +37,6 @@ public class BlankFragment extends Fragment implements AMap.OnMapLoadedListener 
   }
 
   @Override public void onMapLoaded () {
-    getActivity().getSupportFragmentManager().beginTransaction()
-        .remove(getActivity().getSupportFragmentManager().findFragmentByTag("map")).commit();
+    Log.d(TAG, "onMapLoaded: ");
   }
 }

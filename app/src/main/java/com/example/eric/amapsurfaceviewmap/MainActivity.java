@@ -1,8 +1,10 @@
 package com.example.eric.amapsurfaceviewmap;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,8 +13,14 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     Fragment fragment = new BlankFragment();
-    getSupportFragmentManager().beginTransaction()
+    FragmentManager supportFragmentManager = getSupportFragmentManager();
+    supportFragmentManager.beginTransaction()
         .replace(R.id.map_background_container, fragment, "map")
         .commit();
+    Button crashBtn = findViewById(R.id.button);
+    crashBtn.setOnClickListener(v -> {
+      supportFragmentManager.beginTransaction()
+          .remove(supportFragmentManager.findFragmentByTag("map")).commit();
+    });
   }
 }
